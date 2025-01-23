@@ -41,7 +41,7 @@ jstack -l $(jps | grep -i Application | awk '{print $1}') | grep -i java.io.Inpu
 ```
 
 #### The logs should show the timeout after 30 seconds
-```json
+```declarative
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
