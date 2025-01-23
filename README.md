@@ -41,7 +41,7 @@ jstack -l $(jps | grep -i Application | awk '{print $1}') | grep -i java.io.Inpu
 ```
 
 #### The logs should show the timeout after 30 seconds
-```declarative
+```java
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -93,5 +93,6 @@ Sent byte: A
 Sent byte: A
 
 2025-01-23 22:30:26.831  WARN 411923 --- [tp1719519917-57] org.eclipse.jetty.server.HttpChannel     : handleException /test/rest java.io.IOException: java.util.concurrent.TimeoutException: Idle timeout expired: 30000/30000 ms
+
 
 ```
