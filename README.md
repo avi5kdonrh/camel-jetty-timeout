@@ -1,7 +1,8 @@
 ### Project to simulate idleTimeout for the jetty REST endpoint.
 #### Run with
-`mvn spring-boot:run`
-
+```declarative
+mvn spring-boot:run
+```
 The SlowClient will automatically call the jetty endpoint by sending one byte at a time and with the help of the Thread.sleep, it will take more than 30 seconds to completely send the payload.
 This will cause the server to throw the idle timeout expired exception.
 
