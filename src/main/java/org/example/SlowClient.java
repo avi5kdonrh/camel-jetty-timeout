@@ -1,14 +1,18 @@
-package org.client;
+package org.example;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
+@Configuration
 public class SlowClient {
-    public static void main(String[] args) {
+
+
+    public void testClient() {
         String host = "localhost";
         int port = 8081;
 
@@ -37,7 +41,6 @@ public class SlowClient {
             int readCount;
             while ((readCount = socket.getInputStream().read(bytes, 0, bytes.length)) != -1) {
                 System.out.println("Finished sending data. " + new String(bytes));
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
