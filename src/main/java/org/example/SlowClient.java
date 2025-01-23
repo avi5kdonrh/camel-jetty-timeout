@@ -12,9 +12,10 @@ import java.util.concurrent.TimeUnit;
 public class SlowClient {
 
 
-    public void testClient() {
+    public String testClient() {
         String host = "localhost";
         int port = 8081;
+        StringBuilder data = new StringBuilder();
 
         try (
                 Socket socket = new Socket(host, port);
@@ -31,19 +32,23 @@ public class SlowClient {
             outputStream.flush();
             System.out.println("Sent headers.");
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 1; i < 11; i++) {
                 outputStream.write('A');
                 System.out.println("Sent byte: A");
-                TimeUnit.SECONDS.sleep(i * 4);
+                if(i == 9) {
+                    TimeUnit.SECONDS.sleep(40);
+                }
             }
-            outputStream.flush();
-            byte[] bytes = new byte[socket.getInputStream().available()];
+            byte[] bytes = new byte[1024];
             int readCount;
-            while ((readCount = socket.getInputStream().read(bytes, 0, bytes.length)) != -1) {
-                System.out.println("Finished sending data. " + new String(bytes));
+            while ((readCount = socket.getInputStream().read(bytes)) != -1) {
+                data.append((new String(bytes, 0, readCount)));
             }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        return data.toString();
     }
 }

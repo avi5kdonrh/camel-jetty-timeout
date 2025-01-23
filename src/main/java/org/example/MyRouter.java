@@ -19,7 +19,8 @@ public class MyRouter extends RouteBuilder {
                     .log(">>> In Rest API with content ${body}")
                     .setBody().constant("Success");
             from("timer:time?period=60s")
-                    .to("bean:slowClient?method=testClient");
+                    .to("bean:slowClient?method=testClient")
+                    .log("${body}");
 
     }
 }
